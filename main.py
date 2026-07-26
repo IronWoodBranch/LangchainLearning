@@ -9,3 +9,9 @@ llm = ChatOpenRouter(
 )
 response = llm.invoke("简单介绍你是谁")
 print(response.content)
+
+
+
+model = init_chat_model(
+    
+)
