@@ -65,3 +65,26 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
 - 优化：现成的用法：
   - 有SystemMessasge()，HumanMessage方法能把消息直接封装起来，指定role，content可以简单化
 
+
+- gather
+  - 约等于task.whenall
+  - Tips，记得不能传List<Task>(C#的思维的说法)，要拆开，拆箱的便捷工具: *
+
+
+- 协程任务和C#的巨大差异
+        batch_task = asyncio.create_task(batch_coroutines_execute())
+        print("协程已启动") 
+        await asyncio.sleep(0.5)
+        results = await batch_task
+    流程解释：
+    1.create_task这里创建协程任务，但是不启动，跟c#有点神似的地方是Create_Task的参数是个委托，这里把几个方法传进去了，等待执行（但实际不是这样，暂且按这样记忆）
+    2.asyncio.sleep的方法，让main暂停0.5秒并且让出控制权，同时协程开始启动并且等待
+    3.results = await batch_task这里只是等待一个结果，并非启动，这里是最容易误解的
+    
+  - 主程和协程的转化：
+    - 如果有await的操作，大部分情况主程会闲下来，闲得无聊就会开启协程任务
+    - 但有一个情况例外：例如前面由create_task安排的任务非常早之前就完成了，这个时候result = await 安排的任务，一秒都不会闲下来，所以这个时候不会让时间给协程
+  
+
+- f类似于C#的$
+
