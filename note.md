@@ -88,3 +88,21 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
 
 - f类似于C#的$
 
+- 收获清单
+  1. Python 调用异步函数不等于启动执行。
+  2. create_task 和 await task 职责不同。
+  3. await 暂停的是当前协程，不是整个程序
+
+
+- chatopenRouter等方法的返回值里面有一个proflie属性，能看到一些基本信息，例如temprature等等
+  - 例如：同一个chatopenrouter，里面的模型换了，gpt5.5,flash 3.0之类的，返回值里就能看到model.profile是否是不同的
+
+- Init_chat_model创建的model的额外字段
+  - langchain没有直接列出来的字段，但是模型支持的话，我们可以手动给它加到Model kwargs里面去
+  Eg.可选参数，可以指定调用什么tools
+
+  - extra_body
+    - 个性化的字段，不同厂商的独特字段，在Init_chat_model里面总要留出这种灵活字段
+  
+  - configurable：
+    - 和init_chatmodel的参数都一样，但如果设置了这个参数，会覆盖init_chat_model中的设置，也就是某些单词要进行特殊设置的时候，可以选用这个参数
