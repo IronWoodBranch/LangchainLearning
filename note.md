@@ -106,3 +106,44 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
   
   - configurable：
     - 和init_chatmodel的参数都一样，但如果设置了这个参数，会覆盖init_chat_model中的设置，也就是某些单词要进行特殊设置的时候，可以选用这个参数
+
+
+# day 4
+- 输入格式化content_blocks
+  - 多模态的使用等等情况会不一样：具体做法查看文档
+  - 按照规范，content里面需要放字典list来表达多模态
+    但是不同供应商的标准不一样，所以需要用到content_blocks
+
+- 输出模式格式化：也是它content_blocks
+
+
+- 提示词模板 promts templates
+  - 可以防注入，标准化，很多有点，正式开发最好启用
+  - chatPromtpTemplate.from_messages()/chatPromtpTemplate()都可以/还有个formatt（）方法
+  - from_messages有多种调用方法，但我感觉不改变其本质，能用就行
+
+
+- 原始模板可以抠出关键的身份，信息，把场景提供出来，然后不同的输入可以快速复用同一个模板
+  - 可以用partial来简化代码
+
+- 消息占位符：多轮对话中可以使用这个技巧
+  - 可以在多轮对话中，动态嵌入用户的历史回复和技巧
+
+
+- 工具的使用：
+  - 以前：function calling
+  - 现在: MCP
+  1. 调用方式：
+    1. 直接调用:xxx.xxxx 用.来直接调用
+    2. 基于模型进行调用:
+      1. 用bind_tools[]来绑定工具
+      2. 我的理解：可以内置，自己提供工具绑定列表，让别的模型为自己决定调用哪个工具
+- 工具的定义：
+    - 参数用comment进行说明，用自然语言，遵循一定规范（谷歌规范优先）
+    - 最好用@tool装饰器，有内置的方法，能省很多功夫
+    - 可以直接把这个工具的作用加到tool(description里面，但我的直觉告诉我，这肯定不符合最佳规范，就把所有接口参数都解释清楚更好，记得添加Parse_doc的参数，能将这个说明给格式化)
+    - 有一些别的参数，可以规定多个名字之类，我判断：无意义
+  
+- pydatic
+  - 可以辅助规定输入输出的格式等等
+
