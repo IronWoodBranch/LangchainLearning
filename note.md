@@ -149,3 +149,8 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
 
 - @tool 装饰器里面如果指定了google模式的文档，那么文档说明内容也要遵循格式与缩进，参考chapter5的tools-call.py
 
+#Day5 学习
+- 编写tool调用的案例
+  - 本质流程：给工具提供@tool装饰器，以供model_bind方法调用
+  - 再调用model_bind方法，把@tool装饰器装饰好的方法给注册进去
+  - 用tool_choice等等方法可以指定调用策略：required，none等等
