@@ -147,3 +147,5 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
 - pydatic
   - 可以辅助规定输入输出的格式等等
 
+- @tool 装饰器里面如果指定了google模式的文档，那么文档说明内容也要遵循格式与缩进，参考chapter5的tools-call.py
+
