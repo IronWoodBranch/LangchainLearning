@@ -170,3 +170,23 @@ base_url="[https://openrouter.ai/api/v1](https://openrouter.ai/api/v1)",
 - TypeDict
   - 更弱的校验和限制的pydantic，以警告形式进行校验
   - 可以给数据源附加一些信息
+
+
+# Day8
+- agent的基础知识和相关知识
+  1.  agent的创建在langchain 1.0之后出现了较大的革新和变动
+    - 以前老版本，不同的agent调用不同的创建方法等等
+    - 新版本，所有agent用统一调用，全部用invoke或者stream进行统一
+      - 其中特殊的部分用middleware进行特殊处理
+  2. agent里面基础以及要注意的：
+    1. create_agent
+    2. agent被create出来之后的调用： invoke
+    3. 绑定单个和多个工具：在Create的时候传入[]tools的参数即可
+    4. 有langchain内置的agent，例如搜索的功能
+  3. 结构化输出的四个模式
+    - 主要
+      1. 默认模式
+      2. Toolstrategy给不支持结构化输出的供应商/中间平台使用
+      3. 流式输出，有好几种，现在chatgpt那种打字模式是updates
+        1. 如果每一步都要存值那可以采用values但我感觉有问题
+        
